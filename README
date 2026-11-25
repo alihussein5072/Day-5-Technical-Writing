@@ -1,0 +1,301 @@
+DAY 5 ASSIGNMENT – TECHNICAL WRITING
+Below is a complete assignment covering both Exercise A and Exercise B. I have selected GitHub Repository Setup for Exercise A because it is a practical task for a first-semester computing student.
+EXERCISE A: USER MANUAL PROCEDURE
+Topic: How to Create a GitHub Repository and Make Your First Commit
+1. Introduction
+GitHub is an online platform used by developers to store, manage, and share their software projects. It uses Git, a version control system that tracks changes made to files over time.
+
+This procedure explains how a beginner can create a GitHub repository, connect it to a local computer, and make the first commit.
+2. Prerequisites
+Before starting, ensure that you have:
+1. A computer with Windows, Linux, or macOS installed.
+2. A stable internet connection.
+3. A GitHub account. Create one at GitHub.
+4. Git installed on your computer. Download it from Git official website.
+5. Basic knowledge of using a computer and opening applications.
+6. A text editor such as Visual Studio Code or Notepad.
+3. Step-by-Step Procedure
+Step 1: Open the GitHub website.
+- Action: Open your web browser and enter https://github.com/.
+- Expected result: The GitHub homepage appears.
+Step 2: Sign in to your GitHub account.
+- Action: Enter your username or email address and password.
+- Expected result: Your GitHub dashboard opens.
+Step 3: Create a new repository.
+- Action: Click the "+" icon and select "New repository".
+- Expected result: The repository creation page appears.
+Step 4: Enter the repository name.
+- Action: Type a name for your repository, for example, my-first-project.
+- Expected result: The repository name appears in the name field.
+Step 5: Add a repository description.
+- Action: Enter a short description of your project.
+- Expected result: The description appears in the description field.
+Step 6: Select repository visibility.
+- Action: Choose either Public or Private.
+- Expected result: Your preferred repository visibility is selected.
+Step 7: Create the repository.
+- Action: Click the "Create repository" button.
+- Expected result: GitHub creates the repository and displays its main page.
+Step 8: Open the terminal.
+- Action: Open Command Prompt, PowerShell, or Git Bash on your computer.
+- Expected result: A terminal window appears.
+Step 9: Create a project folder.
+
+- Action: Enter the following command:
+mkdir my-first-project
+
+
+- Expected result: A new folder named my-first-project is created.
+
+Step 10: Enter the project folder.
+
+- Action: Run:
+cd my-first-project
+
+
+- Expected result: The terminal moves into the project folder.
+
+Step 11: Initialize Git.
+
+- Action: Run:
+git init
+
+
+- Expected result: Git initializes an empty repository in the folder.
+
+Step 12: Create a project file.
+
+- Action: Run:
+echo "# My First Project" > README.md
+
+
+- Expected result: A README.md file is created.
+
+Step 13: Stage the project file.
+
+- Action: Run:
+git add README.md
+
+
+- Expected result: The README.md file is added to the staging area.
+
+Step 14: Make the first commit.
+
+- Action: Run:
+git commit -m "Initial commit"
+
+
+- Expected result: Git records the first snapshot of your project.
+
+Step 15: Connect the local repository to GitHub.
+
+- Action: Run the following command, replacing the URL with your repository's actual HTTPS URL:
+git remote add origin https://github.com/USERNAME/my-first-project.git
+
+
+- Expected result: The local repository is connected to the GitHub repository.
+
+Step 16: Rename the current branch.
+
+- Action: Run:
+git branch -M main
+
+
+- Expected result: The current branch is named main.
+
+Step 17: Upload the project to GitHub.
+
+- Action: Run:
+git push -u origin main
+
+
+- Expected result: Your project files are uploaded to GitHub.
+4. Screenshot Description
+
+
+
+
+
+
+
+
+myapollo.com.tw
+
+
+Figure 1: GitHub repository after the first successful commit.
+
+The screenshot should show:
+- The repository name.
+- The README.md file.
+- The main branch.
+- The initial commit message.
+- The repository URL.
+This screenshot confirms that the project has been successfully uploaded.
+5. Troubleshooting
+Common error: Git is not recognized as an internal or external command.
+
+Cause: Git may not be installed, or its installation directory may not have been added to the system PATH.
+
+Solution:
+1. Download Git from https://git-scm.com/.
+2. Install Git using the recommended installation settings.
+3. Close and reopen the terminal.
+4. Run:
+git --version
+
+
+5. Confirm that Git displays its installed version.
+6. Conclusion
+Creating a GitHub repository and making the first commit helps beginners understand version control and project management. By following these steps, a student can create a repository, track project changes, and upload files to GitHub for future development.
+
+EXERCISE B: API REFERENCE ENTRY
+Topic: Create a New Task in a Project Management Application
+1. Introduction
+An API (Application Programming Interface) allows different software applications to communicate and exchange information.
+
+The Create Task API endpoint allows an authenticated user to create a new task within a project management application. The user provides the task title, description, assignee, due date, and priority level.
+2. Endpoint Information
+Property	Description
+API Name	Create Task API
+HTTP Method	POST
+Endpoint	/api/v1/projects/{project_id}/tasks
+Authentication	Required
+Content Type	application/json
+Response Format	JSON
+
+3. Description
+This endpoint creates a new task under a specified project.
+
+An authenticated user sends a POST request containing the task details. The application validates the information, saves the task in the database, and returns the newly created task with its unique ID and creation date.
+4. Request Parameters
+A. Path Parameters
+
+Path parameters identify the project in which the task will be created.
+Parameter	Data Type	Requirement	Description
+project_id	Integer	Required	Unique ID of the project where the task will be created.
+
+Example:
+/api/v1/projects/105/tasks
+
+
+Here, 105 represents the project ID.
+
+B. Query Parameters
+
+This endpoint does not require any query parameters.
+
+C. Request Body Parameters
+
+The request body contains the information required to create a task.
+Parameter	Data Type	Requirement	Description
+title	String	Required	Name or title of the task.
+description	String	Optional	Additional information about the task.
+assignee_id	Integer	Required	Unique ID of the user assigned to complete the task.
+due_date	String (Date)	Required	Deadline for completing the task in YYYY-MM-DD format.
+priority	String	Required	Priority level: low, medium, or high.
+
+5. Required Request Headers
+The following headers must be included in the request.
+Header	Requirement	Description
+Authorization	Required	Contains the user's authentication token.
+Content-Type	Required	Specifies that the request body is JSON.
+Accept	Optional	Specifies that the client expects a JSON response.
+
+Example:
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Content-Type: application/json
+Accept: application/json
+
+
+The access token verifies the identity of the user making the request.
+6. Example Request
+HTTP Request:
+POST /api/v1/projects/105/tasks HTTP/1.1
+Host: api.projectmanager.com
+Authorization: Bearer abc123xyz789
+Content-Type: application/json
+Accept: application/json
+
+
+Request Body (JSON):
+{
+  "title": "Prepare Financial Report",
+  "description": "Prepare and submit the monthly financial performance report.",
+  "assignee_id": 204,
+  "due_date": "2026-12-15",
+  "priority": "high"
+}
+
+
+Explanation:
+- title: Specifies the name of the task.
+- description: Explains what the task involves.
+- assignee_id: Identifies the user responsible for completing the task.
+- due_date: Specifies the completion deadline.
+- priority: Indicates the urgency of the task.
+7. Successful Response
+When the task is successfully created, the API returns HTTP status code 201 Created.
+
+Example Response Body:
+{
+  "success": true,
+  "message": "Task created successfully.",
+  "data": {
+    "id": 501,
+    "project_id": 105,
+    "title": "Prepare Financial Report",
+    "description": "Prepare and submit the monthly financial performance report.",
+    "assignee_id": 204,
+    "due_date": "2026-12-15",
+    "priority": "high",
+    "status": "pending",
+    "created_at": "2026-11-25T16:30:00Z"
+  }
+}
+
+
+Explanation of the response:
+Field	Description
+success	Indicates whether the operation was successful.
+message	Provides a confirmation message.
+id	Unique identification number assigned to the task.
+project_id	Identifies the project containing the task.
+title	Name of the created task.
+description	Additional task information.
+assignee_id	ID of the assigned user.
+due_date	Task completion deadline.
+priority	Task priority level.
+status	Current task status.
+created_at	Date and time when the task was created.
+
+8. HTTP Response Codes
+The API can return the following HTTP response codes:
+Status Code	Name	Explanation
+201	Created	The task has been successfully created.
+400	Bad Request	The request contains invalid data or incorrectly formatted JSON.
+401	Unauthorized	The user has not provided a valid authentication token.
+403	Forbidden	The authenticated user does not have permission to create tasks in the project.
+404	Not Found	The specified project or assigned user does not exist.
+409	Conflict	The request conflicts with an existing resource or project rule.
+415	Unsupported Media Type	The request does not use the supported JSON content type.
+422	Unprocessable Entity	The submitted information fails validation, such as an invalid priority or date.
+429	Too Many Requests	The user has exceeded the API request limit.
+500	Internal Server Error	An unexpected server-side error prevents task creation.
+503	Service Unavailable	The API service is temporarily unavailable.
+
+9. Validation Rules
+The API should enforce the following validation rules:
+1. The task title must not be empty.
+2. The description is optional.
+3. The assignee ID must belong to an existing user.
+4. The due date must follow the YYYY-MM-DD format.
+5. The priority must be either low, medium, or high.
+6. The project ID must identify an existing project.
+7. The user must be authenticated and authorized to create tasks in the specified project.
+10. Security Considerations
+The API should follow appropriate security practices:
+- Authentication: Require a valid access token.
+- Authorization: Ensure that users can only create tasks in projects where they have permission.
+- Input validation: Validate all submitted information before saving it.
+- Data protection: Use HTTPS to protect information during transmission.
+- Error handling: Avoid exposing sensitive system information in error messages.
